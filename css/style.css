@@ -125,19 +125,41 @@ body {
   margin: 10px 0;
 }
 
-/* Gallery */
+/* 
+  Gallery Styles
+  - 2 columns for larger screens so 4 images will form a 2×2 grid.
+  - Figures allow captions (<figcaption>) under each image.
+*/
 .gallery .image-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  /* Change to repeat(2, 1fr) for exactly 2 columns */
+  grid-template-columns: repeat(2, 1fr);
   gap: 10px;
+  max-width: 800px;
+  margin: 0 auto; /* Center the grid container */
 }
 
+/* Ensure figure and figcaption are displayed nicely */
+.gallery .image-grid figure {
+  margin: 0;            /* Remove default browser margins on figure */
+  text-align: center;   /* Center the content (image + caption) */
+}
+
+/* Images themselves */
 .gallery .image-grid img {
   width: 100%;
   height: auto;
   display: block;
   border-radius: 4px;
   object-fit: cover;
+}
+
+/* Captions below each image */
+.gallery .image-grid figcaption {
+  margin-top: 8px;
+  font-style: italic; /* optional */
+  font-size: 0.9rem;
+  color: #555;
 }
 
 /* Contact Form */
@@ -193,11 +215,18 @@ footer {
 
 /* Responsive Styles */
 @media (max-width: 768px) {
+  /* Stack service items in a single column on small screens */
   .services {
     grid-template-columns: 1fr;
   }
 
+  /* Reduce hero text size for mobile */
   .hero h1 {
     font-size: 2rem;
+  }
+
+  /* Make gallery 1 column when screen is too narrow for 2 columns */
+  .gallery .image-grid {
+    grid-template-columns: 1fr;
   }
 }
